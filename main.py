@@ -16,6 +16,8 @@ iState = 0
 refresh = True
 mousex, mousey = 0, 0
 newEvent = False
+
+
 if __name__ == "__main__":
     run = True
     

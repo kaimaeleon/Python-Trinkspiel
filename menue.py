@@ -11,7 +11,7 @@ def background(WIDTH, HEIGHT):
 
 def titleText(screen, WIDTH, HEIGHT):
     font = pygame.font.Font("ComicSansbold.ttf", 256)
-    textObj = font.render("START", True, DARK_GREY)
+    textObj = font.render("Happy Drinks", True, DARK_GREY)
     text_rect = textObj.get_rect(center=(WIDTH//2,3*HEIGHT//9))
     screen.blit(textObj, text_rect)
 
