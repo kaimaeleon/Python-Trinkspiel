@@ -2,6 +2,7 @@ import game, menue
 import pygame
 import sys
 import numpy
+import gameClass
 
 
 
@@ -20,7 +21,7 @@ newEvent = False
 
 if __name__ == "__main__":
     run = True
-    
+    players = [gameClass.Player("Spieler " + str(i), 0, i) for i in range(1, 9)]
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -31,7 +32,7 @@ if __name__ == "__main__":
                 newEvent = True
 
         if iMode == 0:
-            screen, refresh, newEvent, iMode, iState = menue.main(screen, refresh, WIDTH, HEIGHT, newEvent, mousex, mousey, iState)
+            screen, refresh, newEvent, iMode, iState, players = menue.main(screen, refresh, WIDTH, HEIGHT, newEvent, mousex, mousey, iState, players)
             
         elif iMode == 1:
             screen, refresh, newEvent, iMode = game.main(screen, refresh, WIDTH, HEIGHT)

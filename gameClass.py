@@ -1,7 +1,8 @@
 class Player:
-    def __init__(self, field, turnNo):
+    def __init__(self, name, field, nr):
+        self.name = name
         self.field = field
-        self.turnNo = turnNo
+        self.nr = nr
 
 class Rect:
     def __init__(self, x, y, width, height):
