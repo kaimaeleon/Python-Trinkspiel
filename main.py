@@ -30,9 +30,13 @@ if __name__ == "__main__":
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mousex, mousey = pygame.mouse.get_pos()
                 newEvent = True
+            if event.type == pygame.KEYDOWN:
+                key = event.key
+                newEvent = True
+
 
         if iMode == 0:
-            screen, refresh, newEvent, iMode, iState, players = menue.main(screen, refresh, WIDTH, HEIGHT, newEvent, mousex, mousey, iState, players)
+            screen, refresh, newEvent, iMode, iState, players = menue.main(screen, refresh, WIDTH, HEIGHT, newEvent, mousex, mousey, iState, players, key)
             
         elif iMode == 1:
             screen, refresh, newEvent, iMode = game.main(screen, refresh, WIDTH, HEIGHT)
