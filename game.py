@@ -1,5 +1,5 @@
 import pygame, random, time
-import gameClass
+import lib.gameClass
 
 
 def background_1(WIDTH, HEIGHT):

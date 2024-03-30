@@ -1,8 +1,7 @@
-import game, menue
+import menue
 import pygame
 import sys
-import numpy
-import gameClass
+import lib.gameClass as gameClass
 
 pygame.init()
 screen_info = pygame.display.Info()
