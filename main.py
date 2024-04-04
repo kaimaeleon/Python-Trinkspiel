@@ -46,6 +46,8 @@ if __name__ == "__main__":
             run = False
         if control.iMode == 1:
             control = menue.main(control)
+        if control.iMode == 2:
+            print("Game")
        
         #refresh screen
         pygame.display.flip() 

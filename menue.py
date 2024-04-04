@@ -45,6 +45,11 @@ def charCreation(control):
             control.iState = 0
             control.refresh = True       
             return control
+        if w//30+w//13 <= control.event.mouseX <= w//30+2*w//13 and 10*h//13 < control.event.mouseY <= 10*h//13+w//13:
+            control.iState = 0
+            control.iMode = 2
+            control.refresh = True       
+            return control
         if control.iState > 1:
             if control.event.key is not None and control.iState :
                 control.players[control.iState-2].name += control.event.key
@@ -76,5 +81,6 @@ def charCreation(control):
         for player in control.players:
             draw.rectText(control.screen, w//30, (1+player.nr)*h//13,w//3,h//13,player.name)
         draw.rectText(control.screen, w//30, 10*h//13, w//13, w//13, "<", "subtitle",True)
+        draw.rectText(control.screen, w//30+w//13, 10*h//13, w//13, w//13, "GO", "subtitle",True)
     return control
 
