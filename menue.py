@@ -19,10 +19,14 @@ def startScreen(control):
     w,h=control.width,control.height
     if control.event.new:
         control.event.new = False
-        if 3*w//10 <= control.event.mouseX <= (7*w//10) and 6*h//10 <= control.event.mouseX <= (7*w//10):
+        if 3*w//10 <= control.event.mouseX <= (7*w//10) and 6*h//10 <= control.event.mouseY <= (7*h//10):
             print("Start")
             control.iState = 1
             control.refresh = True
+            return control
+        if 3*w//10 <= control.event.mouseX <= (7*w//10) and 7*h//10 < control.event.mouseY <= (8*h//10):
+            print("Quit")
+            control.iMode = 0
             return control
     if control.refresh:
         control.refresh = False
@@ -30,6 +34,7 @@ def startScreen(control):
         control.screen.blit(backgroundImage, (0,0))
         draw.titleText(control.screen,"Happy Drinks",w//2,h//3,center=True)
         draw.rectText(control.screen,3*w//10, 6*h//10, 4*w//10, h//10, "START",format="subtitle",center=True)
+        draw.rectText(control.screen,3*w//10, 7*h//10, 4*w//10, h//10, "QUIT",format="subtitle",center=True)
     return control
 
 def charCreation(control):
