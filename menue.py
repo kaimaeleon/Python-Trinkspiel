@@ -53,6 +53,10 @@ def charCreation(control):
                 control.players[control.iState-2].name += control.event.key
                 control.event.key = None
                 control.refresh = True
+            elif control.event.funcKey == "space" :
+                control.players[control.iState-2].name += " "
+                control.event.funcKey = None
+                control.refresh = True
             elif control.event.funcKey == "backspace":
                 control.event.funcKey = None
                 control.players[control.iState-2].name = control.players[control.iState-2].name[:-1]

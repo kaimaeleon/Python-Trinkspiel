@@ -13,7 +13,7 @@ pygame.display.set_caption("Trinkspiel")
 if __name__ == "__main__":
     run = True
     control.iMode = 1
-    control.players = [gameClass.Player("Spieler " + str(i), 0, i) for i in range(1, 9)]
+    control.players = [gameClass.Player("Spieler " + str(i), 0, i,0) for i in range(1, 9)]
     while run:
         #Input Handling
         for event in pygame.event.get():
@@ -40,6 +40,8 @@ if __name__ == "__main__":
                     control.event.funcKey = "space"
                     control.event.key = None
                     print(control.event.funcKey)
+                elif event.key == pygame.K_ESCAPE:
+                    control.iMode = 0
                 else:
                     control.event.new = True
                     control.event.funcKey = None

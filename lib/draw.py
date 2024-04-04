@@ -11,6 +11,10 @@ def background(w, h, image):
     image = pygame.image.load(image)
     return pygame.transform.scale(image, (w, h))
 
+def fill(screen, color=LIGHT_PAPER):
+    screen.fill(color)
+    
+
 def text(screen, text , x, y, color=DARK_GREY, center=False):
     font = pygame.font.Font("ComicSansbold.ttf", 32)
     textObj = font.render(text, True, color)

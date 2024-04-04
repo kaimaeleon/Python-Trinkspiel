@@ -26,10 +26,11 @@ class Game:
         self.turnNo = turnNo
     
 class Player:
-    def __init__(self, name, field, nr):
+    def __init__(self, name, field, nr, sips):
         self.name = name
         self.field = field
         self.nr = nr
+        self.sips = sips
 
 class Rect:
     def __init__(self, x, y, width, height):
