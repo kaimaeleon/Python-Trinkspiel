@@ -1,4 +1,4 @@
-import menue
+import menue, game
 import pygame
 import sys
 import lib.gameClass as gameClass
@@ -6,14 +6,14 @@ import lib.gameClass as gameClass
 pygame.init()
 screen_info = pygame.display.Info()
 eventInstance=gameClass.Event(False,0,0,None, None)
-control = gameClass.Control(screen=0,iMode=0,iState=0,width=screen_info.current_w, height=screen_info.current_h, refresh=True, event=eventInstance,players = [gameClass.Player("Spieler " + str(i), 0, i) for i in range(1, 9)])
+control = gameClass.Control(width=screen_info.current_w, height=screen_info.current_h,event=eventInstance)
 control.screen = pygame.display.set_mode((control.width, control.height), pygame.FULLSCREEN)
 pygame.display.set_caption("Trinkspiel")
 
 if __name__ == "__main__":
     run = True
     control.iMode = 1
-    players = [gameClass.Player("Spieler " + str(i), 0, i) for i in range(1, 9)]
+    control.players = [gameClass.Player("Spieler " + str(i), 0, i) for i in range(1, 9)]
     while run:
         #Input Handling
         for event in pygame.event.get():
@@ -47,7 +47,7 @@ if __name__ == "__main__":
         if control.iMode == 1:
             control = menue.main(control)
         if control.iMode == 2:
-            print("Game")
+            control = game.main(control)
        
         #refresh screen
         pygame.display.flip() 

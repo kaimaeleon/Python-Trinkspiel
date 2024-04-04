@@ -1,6 +1,4 @@
-import pygame
 import lib.draw as draw
-import lib.gameClass as gameClass
 
 DARK_GREY   = draw.DARK_GREY  
 LIGHT_GREY  = draw.LIGHT_GREY 

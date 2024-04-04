@@ -1,5 +1,5 @@
 class Control:
-    def __init__(self,screen,width,height,refresh,event, iMode, iState, players):
+    def __init__(self,screen = None,width = None,height = None,refresh = True,event = None, iMode = 1, iState = 0, players = None, game = None):
         self.screen = screen
         self.width = width
         self.height = height
@@ -8,6 +8,7 @@ class Control:
         self.iMode = iMode
         self.iState = iState
         self.players = players
+        self.game = game
 
 class Event:
     def __init__(self, new, mouseX, mouseY, key, funcKey):
@@ -17,6 +18,13 @@ class Event:
         self.key = key
         self.funcKey = funcKey
 
+class Game:
+    def __init__(self,actP,actPArray,curP,turnNo):
+        self.actP = actP
+        self.actPArray = actPArray
+        self.curP = curP
+        self.turnNo = turnNo
+    
 class Player:
     def __init__(self, name, field, nr):
         self.name = name

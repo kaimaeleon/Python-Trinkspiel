@@ -1,23 +1,25 @@
 import pygame, random, time
-import lib.gameClass
+import lib.gameClass as gameclass
+import lib.draw as draw
 
+def main(control):
+    if control.iState == 0:
+        control.game = gameclass.Game(0,0,0,0)
+        control = activePlayers(control)
+        control.iState = 1
 
-def background_1(WIDTH, HEIGHT):
-    image = pygame.image.load("bg-menue.jpg")
-    return pygame.transform.scale(image, (WIDTH, HEIGHT))
+    return control
 
-
-
-
-
-def main(screen, refresh, WIDTH, HEIGHT, event, mousex, mousey):
-    iMode = 1
-    #Logic
-    #if event:
-
-
-    #Graphic
-    if refresh:
-        background_1(screen, WIDTH, HEIGHT)
-    
-    return screen, refresh, event, iMode
+def activePlayers(control):
+    control.game.actPArray = []
+    for player in control.players:
+        print("Spielername:", player.name,"aktiv wenn übereinstimmt mit:","Spieler "+str(player.nr))
+        if player.name != ("Spieler "+str(player.nr)):
+            control.game.actP += 1
+            control.game.actPArray.append(player.nr)
+            print("aktiv")
+        else:
+            print("nicht aktiv")
+    print(control.game.actP,"Spieler sind aktiv")
+    print("Array:",control.game.actPArray)
+    return control
