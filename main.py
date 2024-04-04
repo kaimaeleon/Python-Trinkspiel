@@ -35,6 +35,11 @@ if __name__ == "__main__":
                     control.event.funcKey = "backspace"
                     control.event.key = None
                     print(control.event.funcKey)
+                elif event.key == pygame.K_SPACE:
+                    control.event.new = True
+                    control.event.funcKey = "space"
+                    control.event.key = None
+                    print(control.event.funcKey)
                 else:
                     control.event.new = True
                     control.event.funcKey = None
