@@ -7,7 +7,6 @@ def main(control):
         control = init(control)
     if control.iState >= 1:
         control = gameLoop(control)
-        print("gameLoop")
     return control
 
 def init(control):
@@ -28,7 +27,6 @@ def gameLoop(control):
     return control
 
 def graphics(control):
-    print("Graphics")
     draw.fill(control.screen)
     #playboard(control)
     hud(control)
@@ -48,6 +46,7 @@ def hud(control):
 def playboard(control):
     w,h=control.width,control.height
     draw.rectText(control.screen,(1/2)*(w-h),0,w-h,h,"Spielbrett", "subtitle", True)
+    #tileW,tileY = w
 
 
 def activePlayers(control):
