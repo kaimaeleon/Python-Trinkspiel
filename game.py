@@ -50,10 +50,10 @@ def gameLoop(control):
     #Wer ist dran
     if control.iState == 1:
         if control.helpVar is None:
-            control.helpVar = 255
+            control.helpVar = 750
         else:
             control.helpVar -= 25
-        txt="Du bist dran"+str(control.players[control.game.curP].name)
+        txt="Du bist dran "+str(control.players[control.game.curP].name)
         draw.titleText(control.screen,txt,control.width//2,control.height//2,center=True,alpha=control.helpVar)
         if control.helpVar <= 0:
             control.helpVar = None
@@ -68,10 +68,11 @@ def gameLoop(control):
         else:
             control.helpVar = random.randint(1,6)
             control.helpStr= str(control.helpVar)
+            control.iState = 3
         draw.titleText(control.screen,control.helpStr,control.width//2,control.height//2,center=True)
     
     #Wurf ausspielen
-    if control.iState == 3:
+    #if control.iState == 3:
         #moving player funktion, da player unsichtbar wenn tile>=40
 
     #next turn
