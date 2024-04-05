@@ -42,9 +42,33 @@
     "AlleTrinken": {
         "ID": 5,
         "sips": 2,
-        "display":"Alle",
+        "display":"Alle 2",
         "str": "alle trinken 2",
         "color": "orange",
         "out": 1
-      }
+    },
+    "Kategorie": {
+        "ID": 6,
+        "sips": 3,
+        "display":"Kategorie",
+        "str": "stell eine Kategorie",
+        "color": "pink",
+        "out": 1
+    },
+    "Reime": {
+        "ID": 7,
+        "sips": 3,
+        "display":"Reim",
+        "str": "stell einen Reim",
+        "color": "brown",
+        "out": 1
+    },
+    "FragenDame": {
+        "ID": 6,
+        "sips": 3,
+        "display":"FragenDame",
+        "str": "keiner darf dir antworten",
+        "color": "cyan",
+        "out": 1
+    }
   }
