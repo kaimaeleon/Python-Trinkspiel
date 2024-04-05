@@ -1,7 +1,6 @@
 {
     "Start": {
         "ID": 0,
-        "sips": 0,
         "display":"Los",
         "str": "Los!",
         "color": "yellow",
@@ -9,7 +8,6 @@
     },
     "Ende": {
         "ID": 1,
-        "sips": 0,
         "display":"Ende",
         "str": "Du hast es geschafft!!!",
         "color": "yellow",
@@ -21,7 +19,7 @@
         "display":"2 trinken",
         "str": "Du darfst 2 trinken",
         "color": "red",
-        "out": 0 
+        "out": 0
     },
     "Verteil3": {
         "ID": 3,
@@ -37,7 +35,9 @@
         "display":"Regel",
         "str": "Stell neue eine Regel auf",
         "color": "cyan",
-        "out": 0
+        "out": 0,
+        "max": 1,
+        "else": "Verteil5"
     },
     "AlleTrinken": {
         "ID": 5,
@@ -53,7 +53,9 @@
         "display":"Kategorie",
         "str": "Stell eine Kategorie",
         "color": "pink",
-        "out": 1
+        "out": 1,
+        "max": 1,
+        "else": "Verteil2"
     },
     "Reime": {
         "ID": 7,
@@ -61,7 +63,9 @@
         "display":"Reim",
         "str": "Stell einen Reim",
         "color": "pink",
-        "out": 1
+        "out": 1,
+        "max": 1,
+        "else": "Verteil3"
     },
     "FragenDame": {
         "ID": 8,
@@ -69,7 +73,9 @@
         "display":"Fragen",
         "str": "Keiner darf dir antworten",
         "color": "cyan",
-        "out": 1
+        "out": 1,
+        "max": 1,
+        "else": "Verteil3"
     },
     "Daumen": {
         "ID": 9,
@@ -77,7 +83,9 @@
         "display":"Daumen",
         "str": "Du bist Herr der Daumen",
         "color": "cyan",
-        "out": 1
+        "out": 1,
+        "max": 1,
+        "else": "Verteil5"
     },
     "Augen": {
         "ID": 9,
@@ -85,6 +93,40 @@
         "display":"Medusa",
         "str": "Du bist Medusa",
         "color": "cyan",
+        "out": 1,
+        "max": 1,
+        "else": "Verteil2"
+    },
+    "Trink1": {
+        "ID": 10,
+        "sips": 1,
+        "display":"1 trinken",
+        "str": "Du darfst 1 trinken",
+        "color": "red",
+        "out": 0
+    },
+    "Verteil5": {
+        "ID": 11,
+        "sips": 5,
+        "display":"5 verteilen",
+        "str": "Du kannst 5 verteilen",
+        "color": "green",
+        "out": 1
+    },
+    "Trink3": {
+        "ID": 12,
+        "sips": 3,
+        "display":"3 trinken",
+        "str": "Du darfst 3 trinken",
+        "color": "red",
+        "out": 0
+    },
+    "Verteil2": {
+        "ID": 13,
+        "sips": 2,
+        "display":"2 verteilen",
+        "str": "Du kannst 2 verteilen",
+        "color": "green",
         "out": 1
     }
   }

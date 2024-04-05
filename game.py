@@ -60,7 +60,6 @@ def gameLoop(control):
             control.helpVar = 0
             control.iState = 2
         
-        
     #Würfeln
     if control.iState == 2:
         if control.helpVar < 15:
@@ -72,9 +71,7 @@ def gameLoop(control):
             control.players[control.game.curP].dice = control.helpVar
             control.players[control.game.curP].tileLast = control.players[control.game.curP].tile
             control.helpVar = None
-            control.iState = 3
-        
-        
+            control.iState = 3   
     
     #Wurf anzeigen
     if control.iState == 3: 
@@ -205,15 +202,25 @@ def boardCreation():
         tileCount += 1
     print(tileCount,"mögliche Felder")
     board = []
+    keys = list(data.keys())
     for i in range(0,40):
         if i == 0:
             board.append(data["Start"])
+            keys.remove("Start")
+            keys.remove("Ende")
+            print(keys)
         elif i == 39:
             board.append(data["Ende"])
         else:
-            randKey = "Start"
-            while randKey == "Start" or randKey == "Ende":
-                randKey = random.choice(list(data.keys()))
+            randKey = random.choice(keys)
+            print(randKey)
+            if "max" in data[randKey]:
+                count = board.count(data[randKey])
+                print(randKey,"besitzt max")
+                print("kommt bisher",count,"mal vor")
+                if data[randKey]["max"] <= count:
+                    randKey = data[randKey]["else"]
+                    print("Erstezt durch ", randKey)
             board.append(data[randKey])
     return board
     
