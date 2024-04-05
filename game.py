@@ -66,7 +66,10 @@ def hud(control):
     actP=control.game.actP
     color = ["red","blue","green","pink","yellow","purple","orange","cyan","brown"]
     for i in range(actP):
-        colorOut, colorIn, colorTxt = draw.colorHandling(color[i])
+        if control.game.curP == i and control.loops%10<5:
+            colorOut, colorIn, colorTxt = DARK_WHITE, LIGHT_WHITE, DARK_GREY
+        else:
+            colorOut, colorIn, colorTxt = draw.colorHandling(color[i])
         text = control.players[i].name
         draw.rectText(control.screen,0,i*h//actP,w//5,h//actP,text,colorRectOut=colorOut,colorRectIn=colorIn,colorText=colorTxt)
         #Sips Counter to be continued....
@@ -150,16 +153,18 @@ def players(control):
             x = (7-(i%8))*tileSize+tileX0
         y = i//8*tileSize+tileY0
         if len(playersOnTile) == 1:
-            print("curP:",control.game.curP,";        playersonTile[0]:",playersOnTile[0])
-            if control.game.curP != playersOnTile[0]:
-                colorOut, colorIn, colorTxt = draw.colorHandling(color[playersOnTile[0]])
-            else:
+            if control.game.curP == playersOnTile[0] and control.loops%10<5:
                 colorOut, colorIn = DARK_WHITE, LIGHT_WHITE
+            else:
+                colorOut, colorIn, colorTxt = draw.colorHandling(color[playersOnTile[0]])
             draw.circ(control.screen,x,y,35,colorIn=colorIn,colorOut=colorOut)
         else:
             i=0
             for pl in reversed(playersOnTile):
-                colorOut, colorIn, colorTxt = draw.colorHandling(color[pl])
+                if control.game.curP == pl and control.loops%10<5:
+                    colorOut, colorIn, colorTxt = DARK_WHITE, LIGHT_WHITE, DARK_GREY
+                else:
+                    colorOut, colorIn, colorTxt = draw.colorHandling(color[pl])
                 if i % 5 == 0:
                     draw.circ(control.screen,x,y,25,colorIn=colorIn,colorOut=colorOut)
                 if i % 5 == 1:
