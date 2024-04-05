@@ -11,7 +11,7 @@
         "ID": 1,
         "sips": 0,
         "display":"Ende",
-        "str": "ist im Ziel",
+        "str": "Du hast es geschafft!!!",
         "color": "yellow",
         "out": 0 
     },
@@ -19,7 +19,7 @@
         "ID": 2,
         "sips": 2,
         "display":"2 trinken",
-        "str": "muss 2 trinken",
+        "str": "Du darfst 2 trinken",
         "color": "red",
         "out": 0 
     },
@@ -27,7 +27,7 @@
         "ID": 3,
         "sips": 3,
         "display":"3 verteilen",
-        "str": "darf 3 verteilen",
+        "str": "Du kannst 3 verteilen",
         "color": "green",
         "out": 1
     },
@@ -35,7 +35,7 @@
         "ID": 4,
         "sips": 0,
         "display":"Regel",
-        "str": "stell bitte eine Regel auf",
+        "str": "Stell neue eine Regel auf",
         "color": "cyan",
         "out": 0
     },
@@ -43,7 +43,7 @@
         "ID": 5,
         "sips": 2,
         "display":"Alle 2",
-        "str": "alle trinken 2",
+        "str": "Alle trinken 2",
         "color": "orange",
         "out": 1
     },
@@ -51,7 +51,7 @@
         "ID": 6,
         "sips": 3,
         "display":"Kategorie",
-        "str": "stell eine Kategorie",
+        "str": "Stell eine Kategorie",
         "color": "pink",
         "out": 1
     },
@@ -59,7 +59,7 @@
         "ID": 7,
         "sips": 3,
         "display":"Reim",
-        "str": "stell einen Reim",
+        "str": "Stell einen Reim",
         "color": "pink",
         "out": 1
     },
@@ -67,7 +67,7 @@
         "ID": 8,
         "sips": 1,
         "display":"Fragen",
-        "str": "keiner darf dir antworten",
+        "str": "Keiner darf dir antworten",
         "color": "cyan",
         "out": 1
     },
@@ -75,7 +75,7 @@
         "ID": 9,
         "sips": 1,
         "display":"Daumen",
-        "str": "du bist Herr der Daumen",
+        "str": "Du bist Herr der Daumen",
         "color": "cyan",
         "out": 1
     },
@@ -83,7 +83,7 @@
         "ID": 9,
         "sips": 1,
         "display":"Medusa",
-        "str": "du bist Medusa",
+        "str": "Du bist Medusa",
         "color": "cyan",
         "out": 1
     }

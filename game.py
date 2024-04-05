@@ -54,8 +54,9 @@ def gameLoop(control):
         else:
             control.helpVar -= 25
         txt="Du bist dran "+str(control.players[control.game.curP].name)
-        draw.titleText(control.screen,txt,control.width//2,control.height//2,center=True,alpha=control.helpVar)
+        draw.textVar(control.screen,txt,control.width//2,control.height//2,center=True,alpha=control.helpVar,txtSize=128)
         if control.helpVar <= 0 and control.event.new:
+            control.event.new = False
             control.helpVar = 0
             control.iState = 2
         
@@ -71,7 +72,7 @@ def gameLoop(control):
             control.players[control.game.curP].tileLast = control.players[control.game.curP].tile
             control.helpVar = None
             control.iState = 3
-        draw.titleText(control.screen,control.helpStr,control.width//2,control.height//2,center=True)
+        draw.textVar(control.screen,control.helpStr,control.width//2,control.height//2,center=True,txtSize=512)
     
     #Wurf anzeigen
     if control.iState == 3: 
@@ -80,7 +81,7 @@ def gameLoop(control):
         else:
             control.helpVar -= 25
         txt=str(control.players[control.game.curP].dice)
-        draw.titleText(control.screen,txt,control.width//2,control.height//2,center=True,alpha=control.helpVar)
+        draw.textVar(control.screen,txt,control.width//2,control.height//2,center=True,alpha=control.helpVar,txtSize=512)
         if control.helpVar <= 0:
             control.helpVar = None
             control.iState = 4
@@ -95,11 +96,21 @@ def gameLoop(control):
     if control.iState == 5:
         tile = control.board[control.players[control.game.curP].tile]
         txt = tile["str"]
+        draw.textVar(control.screen,txt,control.width//2,control.height//2,center=True,txtSize=128)
+        if control.event.new:
+            control.event.new = False
+            control.iState = 6 
+            return control
+        
+    #Aufgabe beendet
+    if control.iState == 6:
+        tile = control.board[control.players[control.game.curP].tile]
+        txt = tile["str"]
         if control.helpVar is None:
             control.helpVar = 750
         else:
             control.helpVar -= 25
-        draw.titleText(control.screen,txt,control.width//2,control.height//2,center=True,alpha=control.helpVar)
+        draw.textVar(control.screen,txt,control.width//2,control.height//2,center=True,alpha=control.helpVar,txtSize=128)
         if control.helpVar <= 0:
             control.helpVar = None
             control.iState = 10  
