@@ -38,11 +38,13 @@ class Tile:
         
 
 class Player:
-    def __init__(self, name, nr, sips, tile):
+    def __init__(self, name, nr, sips, tile, tileLast, dice):
         self.name = name
         self.nr = nr
         self.sips = sips
         self.tile = tile
+        self.tileLast = tileLast
+        self.dice = dice
 
 class Rect:
     def __init__(self, x, y, width, height):

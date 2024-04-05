@@ -55,33 +55,65 @@ def gameLoop(control):
             control.helpVar -= 25
         txt="Du bist dran "+str(control.players[control.game.curP].name)
         draw.titleText(control.screen,txt,control.width//2,control.height//2,center=True,alpha=control.helpVar)
-        if control.helpVar <= 0:
-            control.helpVar = None
+        if control.helpVar <= 0 and control.event.new:
+            control.helpVar = 0
             control.iState = 2
         
         
     #Würfeln
     if control.iState == 2:
-        if control.helpVar is None or control.helpVar < 15:
-            control.helpVar = 1
+        if control.helpVar < 15:
+            control.helpVar += 1
             control.helpStr= str(random.randint(1,6))
         else:
             control.helpVar = random.randint(1,6)
-            control.helpStr= str(control.helpVar)
+            control.players[control.game.curP].dice = control.helpVar
+            control.players[control.game.curP].tileLast = control.players[control.game.curP].tile
+            control.helpVar = None
             control.iState = 3
         draw.titleText(control.screen,control.helpStr,control.width//2,control.height//2,center=True)
     
-    #Wurf ausspielen
-    #if control.iState == 3:
-        #moving player funktion, da player unsichtbar wenn tile>=40
+    #Wurf anzeigen
+    if control.iState == 3: 
+        if control.helpVar is None:
+            control.helpVar = 750
+        else:
+            control.helpVar -= 25
+        txt=str(control.players[control.game.curP].dice)
+        draw.titleText(control.screen,txt,control.width//2,control.height//2,center=True,alpha=control.helpVar)
+        if control.helpVar <= 0:
+            control.helpVar = None
+            control.iState = 4
+
+    #Wurf spielen
+    if control.iState == 4:
+        control.players[control.game.curP].tile = control.players[control.game.curP].dice + control.players[control.game.curP].tileLast
+        control.iState = 5
+        time.sleep(3)
+    
+    #Ergebnis anzeigen
+    if control.iState == 5:
+        tile = control.board[control.players[control.game.curP].tile]
+        txt = tile["str"]
+        if control.helpVar is None:
+            control.helpVar = 750
+        else:
+            control.helpVar -= 25
+        draw.titleText(control.screen,txt,control.width//2,control.height//2,center=True,alpha=control.helpVar)
+        if control.helpVar <= 0:
+            control.helpVar = None
+            control.iState = 10  
+            time.sleep(3)
+            return control
+            
 
     #next turn
     if control.iState >= 10:
         control.game.curP += 1
-        if control.game.curP >= control.game.actP:
+        if control.game.curP > control.game.actP:
             control.game.curP = 0
         print("Spieler",control.game.curP,"ist am Zug")
-
+        control.iState = 1
     return control
 
 def graphics(control):
@@ -206,3 +238,7 @@ def players(control):
                     draw.circ(control.screen,x+60,y-60,25,colorIn=colorIn,colorOut=colorOut)
                 i+=1
     return control
+
+    
+
+    
