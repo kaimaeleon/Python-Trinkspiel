@@ -40,6 +40,7 @@ def init(control):
     control = activePlayers(control)
     control.board = boardCreation()
     control.iState = 1
+    print("Spieler",control.game.curP,"ist am Zug")
     return control
 
 def gameLoop(control):
@@ -50,7 +51,8 @@ def gameLoop(control):
         control.game.curP += 1
         if control.game.curP >= control.game.actP:
             control.game.curP = 0
-        control.game.turnNo += 1
+        print("Spieler",control.game.curP,"ist am Zug")
+
     return control
 
 def graphics(control):
@@ -104,7 +106,6 @@ def activePlayers(control):
         del control.players[i]
     for i in range(len(control.players)):
         control.players[i].nr = i
-    print("neues players array:",control.players)
     #putting them in order
     return control
 
@@ -149,11 +150,15 @@ def players(control):
             x = (7-(i%8))*tileSize+tileX0
         y = i//8*tileSize+tileY0
         if len(playersOnTile) == 1:
-            colorOut, colorIn, colorTxt = draw.colorHandling(color[playersOnTile[0]])
+            print("curP:",control.game.curP,";        playersonTile[0]:",playersOnTile[0])
+            if control.game.curP != playersOnTile[0]:
+                colorOut, colorIn, colorTxt = draw.colorHandling(color[playersOnTile[0]])
+            else:
+                colorOut, colorIn = DARK_WHITE, LIGHT_WHITE
             draw.circ(control.screen,x,y,35,colorIn=colorIn,colorOut=colorOut)
-        elif len(playersOnTile) > 1:
+        else:
             i=0
-            for pl in playersOnTile:
+            for pl in reversed(playersOnTile):
                 colorOut, colorIn, colorTxt = draw.colorHandling(color[pl])
                 if i % 5 == 0:
                     draw.circ(control.screen,x,y,25,colorIn=colorIn,colorOut=colorOut)

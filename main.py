@@ -58,6 +58,9 @@ if __name__ == "__main__":
        
         #refresh screen
         pygame.display.flip() 
+        control.loops+=1
+        if control.loops >=1000000:
+            control.loops = 0
 #End
 pygame.quit()
 
