@@ -60,14 +60,30 @@
         "sips": 3,
         "display":"Reim",
         "str": "stell einen Reim",
-        "color": "brown",
+        "color": "pink",
         "out": 1
     },
     "FragenDame": {
         "ID": 8,
         "sips": 1,
-        "display":"FragenDame",
+        "display":"Fragen",
         "str": "keiner darf dir antworten",
+        "color": "cyan",
+        "out": 1
+    },
+    "Daumen": {
+        "ID": 9,
+        "sips": 1,
+        "display":"Daumen",
+        "str": "du bist Herr der Daumen",
+        "color": "cyan",
+        "out": 1
+    },
+    "Augen": {
+        "ID": 9,
+        "sips": 1,
+        "display":"Medusa",
+        "str": "du bist Medusa",
         "color": "cyan",
         "out": 1
     }
