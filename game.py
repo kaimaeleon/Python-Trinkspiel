@@ -66,13 +66,15 @@ def gameLoop(control):
         if control.helpVar < 15:
             control.helpVar += 1
             control.helpStr= str(random.randint(1,6))
+            draw.textVar(control.screen,control.helpStr,control.width//2,control.height//2,center=True,txtSize=512)
         else:
             control.helpVar = random.randint(1,6)
             control.players[control.game.curP].dice = control.helpVar
             control.players[control.game.curP].tileLast = control.players[control.game.curP].tile
             control.helpVar = None
             control.iState = 3
-        draw.textVar(control.screen,control.helpStr,control.width//2,control.height//2,center=True,txtSize=512)
+        
+        
     
     #Wurf anzeigen
     if control.iState == 3: 
@@ -89,8 +91,14 @@ def gameLoop(control):
     #Wurf spielen
     if control.iState == 4:
         control.players[control.game.curP].tile = control.players[control.game.curP].dice + control.players[control.game.curP].tileLast
-        control.iState = 5
-        time.sleep(3)
+        if control.helpVar is None:
+            control.helpVar = 25
+        elif control.helpVar <= 0:
+            control.iState = 5
+            control.helpVar = None
+            return control
+        else:
+            control.helpVar -= 1
     
     #Ergebnis anzeigen
     if control.iState == 5:
@@ -107,24 +115,29 @@ def gameLoop(control):
         tile = control.board[control.players[control.game.curP].tile]
         txt = tile["str"]
         if control.helpVar is None:
-            control.helpVar = 750
+            control.helpVar = 255
         else:
             control.helpVar -= 25
         draw.textVar(control.screen,txt,control.width//2,control.height//2,center=True,alpha=control.helpVar,txtSize=128)
         if control.helpVar <= 0:
             control.helpVar = None
             control.iState = 10  
-            time.sleep(3)
             return control
-            
 
     #next turn
     if control.iState >= 10:
-        control.game.curP += 1
-        if control.game.curP > control.game.actP:
-            control.game.curP = 0
-        print("Spieler",control.game.curP,"ist am Zug")
-        control.iState = 1
+        if control.helpVar is None:
+            control.helpVar = 25
+        elif control.helpVar <= 0:        
+            control.game.curP += 1
+            if control.game.curP >= control.game.actP:
+                control.game.curP = 0
+            print("Spieler",control.game.curP,"ist am Zug")
+            control.iState = 1
+            control.helpVar = None
+        else:
+            control.helpVar -= 1
+    
     return control
 
 def graphics(control):
