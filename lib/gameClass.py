@@ -1,5 +1,5 @@
 class Control:
-    def __init__(self,screen = None,width = None,height = None,refresh = True,event = None, iMode = 1, iState = 0, players = None, game = None, board = None, loops = None):
+    def __init__(self,screen = None,width = None,height = None,refresh = True,event = None, iMode = 1, iState = 0, players = None, game = None, board = None, loops = None, loopLast = None, helpVar = None, helpStr = None):
         self.screen = screen
         self.width = width
         self.height = height
@@ -11,6 +11,9 @@ class Control:
         self.game = game
         self.board = board
         self.loops = loops
+        self.loopLast = loopLast
+        self.helpVar = helpVar
+        self.helpStr = helpStr
 
 class Event:
     def __init__(self, new, mouseX, mouseY, key, funcKey):

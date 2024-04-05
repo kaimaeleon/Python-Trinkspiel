@@ -37,7 +37,7 @@ def fill(screen, color=LIGHT_PAPER):
     screen.fill(color)
     
 
-def text(screen, text , x, y, color=DARK_GREY, center=False):
+def text(screen, text , x, y, color=DARK_GREY, center=False, alpha=255):
     font = pygame.font.Font("ComicSansbold.ttf", 32)
     textObj = font.render(text, True, color)
     if not center:
@@ -45,9 +45,10 @@ def text(screen, text , x, y, color=DARK_GREY, center=False):
         text_rect.topleft = (x,y)
     elif center:
         text_rect = textObj.get_rect(center=(x,y))
+    textObj.set_alpha(alpha)
     screen.blit(textObj, text_rect)
 
-def titleText(screen, text, x, y, color=DARK_GREY, center=False):
+def titleText(screen, text, x, y, color=DARK_GREY, center=False, alpha=255):
     font = pygame.font.Font("ComicSansbold.ttf", 256)
     textObj = font.render(text, True, color)
     if not center:
@@ -55,9 +56,10 @@ def titleText(screen, text, x, y, color=DARK_GREY, center=False):
         text_rect.topleft = (x,y)
     elif center:
         text_rect = textObj.get_rect(center=(x,y))
+    textObj.set_alpha(alpha)
     screen.blit(textObj, text_rect)
 
-def subtitleText(screen, text , x, y, color=DARK_GREY, center=False):
+def subtitleText(screen, text , x, y, color=DARK_GREY, center=False, alpha=255):
     font = pygame.font.Font("ComicSansbold.ttf", 96)
     textObj = font.render(text, True, color)
     if not center:
@@ -65,9 +67,10 @@ def subtitleText(screen, text , x, y, color=DARK_GREY, center=False):
         text_rect.topleft = (x,y)
     elif center:
         text_rect = textObj.get_rect(center=(x,y))
+    textObj.set_alpha(alpha)
     screen.blit(textObj, text_rect)
 
-def textVar(screen, text , x, y, color=DARK_GREY, center=False, txtSize=32):
+def textVar(screen, text , x, y, color=DARK_GREY, center=False, txtSize=32, alpha=255):
     font = pygame.font.Font("ComicSansbold.ttf", txtSize)
     textObj = font.render(text, True, color)
     if not center:
@@ -75,6 +78,7 @@ def textVar(screen, text , x, y, color=DARK_GREY, center=False, txtSize=32):
         text_rect.topleft = (x,y)
     elif center:
         text_rect = textObj.get_rect(center=(x,y))
+    textObj.set_alpha(alpha)
     screen.blit(textObj, text_rect)
 
 def rect(screen, color, x,y,w,h, center=False):

@@ -9,6 +9,7 @@ eventInstance=gameClass.Event(False,0,0,None, None)
 control = gameClass.Control(width=screen_info.current_w, height=screen_info.current_h,event=eventInstance)
 control.screen = pygame.display.set_mode((control.width, control.height), pygame.FULLSCREEN)
 pygame.display.set_caption("Trinkspiel")
+clock = pygame.time.Clock()
 
 if __name__ == "__main__":
     run = True
@@ -59,6 +60,7 @@ if __name__ == "__main__":
        
         #refresh screen
         pygame.display.flip() 
+        clock.tick(60)
         control.loops+=1
         if control.loops >=1000000:
             control.loops = 0

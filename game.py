@@ -33,6 +33,7 @@ def main(control):
         control = init(control)
     if control.iState >= 1:
         control = gameLoop(control)
+    
     return control
 
 def init(control):
@@ -46,6 +47,33 @@ def init(control):
 def gameLoop(control):
     graphics(control)
     
+    #Wer ist dran
+    if control.iState == 1:
+        if control.helpVar is None:
+            control.helpVar = 255
+        else:
+            control.helpVar -= 25
+        txt="Du bist dran"+str(control.players[control.game.curP].name)
+        draw.titleText(control.screen,txt,control.width//2,control.height//2,center=True,alpha=control.helpVar)
+        if control.helpVar <= 0:
+            control.helpVar = None
+            control.iState = 2
+        
+        
+    #Würfeln
+    if control.iState == 2:
+        if control.helpVar is None or control.helpVar < 15:
+            control.helpVar = 1
+            control.helpStr= str(random.randint(1,6))
+        else:
+            control.helpVar = random.randint(1,6)
+            control.helpStr= str(control.helpVar)
+        draw.titleText(control.screen,control.helpStr,control.width//2,control.height//2,center=True)
+    
+    #Wurf ausspielen
+    if control.iState == 3:
+        #moving player funktion, da player unsichtbar wenn tile>=40
+
     #next turn
     if control.iState >= 10:
         control.game.curP += 1
