@@ -64,8 +64,8 @@
         "out": 1
     },
     "FragenDame": {
-        "ID": 6,
-        "sips": 3,
+        "ID": 8,
+        "sips": 1,
         "display":"FragenDame",
         "str": "keiner darf dir antworten",
         "color": "cyan",
