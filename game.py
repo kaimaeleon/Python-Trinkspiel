@@ -57,21 +57,19 @@ def graphics(control):
     draw.fill(control.screen)
     playboard(control)
     hud(control)
+    #players(control)
 
 def hud(control):
     w,h=control.width,control.height
     actP=control.game.actP
-    actPArray = control.game.actPArray
     color = ["red","blue","green","pink","yellow","purple","orange","cyan","brown"]
     for i in range(actP):
         colorOut, colorIn, colorTxt = draw.colorHandling(color[i])
-        text = control.players[actPArray[i]-1].name
+        text = control.players[i].name
         draw.rectText(control.screen,0,i*h//actP,w//5,h//actP,text,colorRectOut=colorOut,colorRectIn=colorIn,colorText=colorTxt)
         #Sips Counter to be continued....
         #draw.text(control.screen,"Sips gesippt: "+str(control.players[actPArray[i]-1].sips),10,50+i*h//actP)
     draw.text(control.screen,"Zug: "+str(control.game.turnNo),5+w//5,5)
-
-
 
 def playboard(control):
     w,h=control.width,control.height
@@ -80,32 +78,37 @@ def playboard(control):
     tileCounter = 0
     draw.rect(control.screen,DARK_GREY,w // 5 + 55, 55,8*tileSize+10,5*tileSize+10)
     for j in range(5):
-        for i in range(8):
-            colorOut, colorIn, colorTxt = draw.colorHandling(board[tileCounter]["color"])
-            draw.rectText(control.screen, w // 5 + 60 + tileSize * i, 60 + tileSize * j, tileSize, tileSize, board[tileCounter]["display"], colorRectOut=colorOut, colorRectIn=colorIn, colorText=colorTxt)
-            tileCounter += 1
+        if j % 2 == 0: 
+            for i in range(8):
+                colorOut, colorIn, colorTxt = draw.colorHandling(board[tileCounter]["color"])
+                draw.rectText(control.screen, w // 5 + 60 + tileSize * i, 60 + tileSize * j, tileSize, tileSize, board[tileCounter]["display"], colorRectOut=colorOut, colorRectIn=colorIn, colorText=colorTxt)
+                tileCounter += 1
+        else:
+            for i in range(8):
+                colorOut, colorIn, colorTxt = draw.colorHandling(board[tileCounter]["color"])
+                draw.rectText(control.screen, w // 5 + 60 + tileSize * (7-i), 60 + tileSize * j, tileSize, tileSize, board[tileCounter]["display"], colorRectOut=colorOut, colorRectIn=colorIn, colorText=colorTxt)
+                tileCounter += 1
     for i in range(2):
         pygame.draw.line(control.screen,DARK_GREY,(w//5+60,60+tileSize+tileSize*2*i),(w//5+60+tileSize*7,60+tileSize+tileSize*2*i),5)
         pygame.draw.line(control.screen,DARK_GREY,(w//5+60+tileSize,60+2*tileSize+tileSize*2*i),(w//5+60+tileSize*8,60+2*tileSize+tileSize*2*i),5)
 
 def activePlayers(control):
-    control.game.actPArray = []
+    nonActPArray = []
     for player in control.players:
-        print("Spielername:", player.name,"aktiv wenn übereinstimmt mit:","Spieler "+str(player.nr))
         if player.name != ("Spieler "+str(player.nr)):
             control.game.actP += 1
-            control.game.actPArray.append(player.nr)
-            print("aktiv")
         else:
-            print("nicht aktiv")
+            nonActPArray.append(player.nr-1)
     print(control.game.actP,"Spieler sind aktiv")
-    print("Array:",control.game.actPArray)
+    for i in reversed(nonActPArray):
+        del control.players[i]
+    print("neues players array:",control.players)
+    #putting them in order
     return control
 
 def boardCreation():
     file = open('tiles.json')
     data = js.load(file)
-    print( data)
     tileCount = 0
     for key in data:
         tileCount += 1
@@ -123,4 +126,31 @@ def boardCreation():
             board.append(data[randKey])
     return board
     
+def players(control):
+    w,h=control.width,control.height
+    color = ["red","blue","green","pink","yellow","purple","orange","cyan","brown"]
+    #tile0 middle point
+    tileSize = h//6
+    tileX0 = w // 5 + 60 + tileSize//2
+    tileY0 = 60 +  tileSize//2
+
+    #check for players on the same tile
+    for i in range(40):
+        playersOnTile = []
+        x,y=0,0
+        plCount = 0
+        for pl in control.players:
+            if i == control.players[i].tile:
+                playersOnTile.append(pl)
+            print("pl on tile:",pl)
+        
+        if (i//8)%2==0:
+            x = (i%8)*tileSize+tileX0
+        else:
+            x = (7-(i%8))*tileSize+tileX0
+        y = i//8*tileSize+tileY0
+        if len(playersOnTile)==1:
+            draw.circ(control.screen,x,y,35)
+
+    return control
     

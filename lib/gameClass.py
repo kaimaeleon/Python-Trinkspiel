@@ -20,9 +20,8 @@ class Event:
         self.funcKey = funcKey
 
 class Game:
-    def __init__(self,actP,actPArray,curP,turnNo):
+    def __init__(self,actP,curP,turnNo):
         self.actP = actP
-        self.actPArray = actPArray
         self.curP = curP
         self.turnNo = turnNo
 
@@ -32,13 +31,15 @@ class Tile:
         self.color = color
         self.str = str
         self.sips = sips
+        
 
 class Player:
-    def __init__(self, name, field, nr, sips):
+    def __init__(self, name, field, nr, sips, tile):
         self.name = name
         self.field = field
         self.nr = nr
         self.sips = sips
+        self.tile = tile
 
 class Rect:
     def __init__(self, x, y, width, height):

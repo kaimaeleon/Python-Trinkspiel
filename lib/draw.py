@@ -67,6 +67,16 @@ def subtitleText(screen, text , x, y, color=DARK_GREY, center=False):
         text_rect = textObj.get_rect(center=(x,y))
     screen.blit(textObj, text_rect)
 
+def textVar(screen, text , x, y, color=DARK_GREY, center=False, txtSize=32):
+    font = pygame.font.Font("ComicSansbold.ttf", txtSize)
+    textObj = font.render(text, True, color)
+    if not center:
+        text_rect = textObj.get_rect()
+        text_rect.topleft = (x,y)
+    elif center:
+        text_rect = textObj.get_rect(center=(x,y))
+    screen.blit(textObj, text_rect)
+
 def rect(screen, color, x,y,w,h, center=False):
     if center:
         pygame.draw.rect(screen, color, (x-w/2,y-h/2,w,h))
@@ -96,6 +106,14 @@ def rectText(screen, x, y, w, h, str,format="text",center=False, colorRectOut=DA
         titleText(screen, str, x+w//2, y+h//2, colorText, center)
     elif format == "title":
         titleText(screen, str, x+10, y+10, colorText)
+
+def circ(screen,x,y,r,text=None,colorIn=LIGHT_GREY,colorOut=DARK_GREY,colorText=DARK_GREY,txtSize=32):
+    pygame.draw.circle(screen,colorOut,(x,y),r)
+    pygame.draw.circle(screen,colorIn,(x,y),r-5)
+    if text is not None:
+        textVar(screen, text, x, y, colorText, txtSize, center=True,)
+
+
     
 def colorHandling(color):
     if color == "red":
