@@ -34,9 +34,8 @@ class Tile:
         
 
 class Player:
-    def __init__(self, name, field, nr, sips, tile):
+    def __init__(self, name, nr, sips, tile):
         self.name = name
-        self.field = field
         self.nr = nr
         self.sips = sips
         self.tile = tile

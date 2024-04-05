@@ -36,7 +36,7 @@ def main(control):
     return control
 
 def init(control):
-    control.game = gameclass.Game(0,0,0,0)
+    control.game = gameclass.Game(0,0,0)
     control = activePlayers(control)
     control.board = boardCreation()
     control.iState = 1
@@ -57,7 +57,7 @@ def graphics(control):
     draw.fill(control.screen)
     playboard(control)
     hud(control)
-    #players(control)
+    players(control)
 
 def hud(control):
     w,h=control.width,control.height
@@ -102,6 +102,8 @@ def activePlayers(control):
     print(control.game.actP,"Spieler sind aktiv")
     for i in reversed(nonActPArray):
         del control.players[i]
+    for i in range(len(control.players)):
+        control.players[i].nr = i
     print("neues players array:",control.players)
     #putting them in order
     return control
@@ -138,19 +140,30 @@ def players(control):
     for i in range(40):
         playersOnTile = []
         x,y=0,0
-        plCount = 0
         for pl in control.players:
-            if i == control.players[i].tile:
-                playersOnTile.append(pl)
-            print("pl on tile:",pl)
-        
+            if i == pl.tile:
+                playersOnTile.append(pl.nr)
         if (i//8)%2==0:
             x = (i%8)*tileSize+tileX0
         else:
             x = (7-(i%8))*tileSize+tileX0
         y = i//8*tileSize+tileY0
-        if len(playersOnTile)==1:
-            draw.circ(control.screen,x,y,35)
-
+        if len(playersOnTile) == 1:
+            colorOut, colorIn, colorTxt = draw.colorHandling(color[playersOnTile[0]])
+            draw.circ(control.screen,x,y,35,colorIn=colorIn,colorOut=colorOut)
+        elif len(playersOnTile) > 1:
+            i=0
+            for pl in playersOnTile:
+                colorOut, colorIn, colorTxt = draw.colorHandling(color[pl])
+                if i % 5 == 0:
+                    draw.circ(control.screen,x,y,25,colorIn=colorIn,colorOut=colorOut)
+                if i % 5 == 1:
+                    draw.circ(control.screen,x-60,y+60,25,colorIn=colorIn,colorOut=colorOut)
+                if i % 5 == 2:
+                    draw.circ(control.screen,x+60,y+60,25,colorIn=colorIn,colorOut=colorOut)
+                if i % 5 == 3:
+                    draw.circ(control.screen,x-60,y-60,25,colorIn=colorIn,colorOut=colorOut)
+                if i % 5 == 4:
+                    draw.circ(control.screen,x+60,y-60,25,colorIn=colorIn,colorOut=colorOut)
+                i+=1
     return control
-    

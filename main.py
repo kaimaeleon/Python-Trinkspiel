@@ -13,7 +13,7 @@ pygame.display.set_caption("Trinkspiel")
 if __name__ == "__main__":
     run = True
     control.iMode = 1
-    control.players = [gameClass.Player("Spieler " + str(i), 0, i,0,0) for i in range(1, 9)]
+    control.players = [gameClass.Player("Spieler " + str(i),i,0,0) for i in range(1, 9)]
     while run:
         #Input Handling
         for event in pygame.event.get():
