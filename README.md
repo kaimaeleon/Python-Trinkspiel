@@ -20,7 +20,6 @@ Drücke "Windows-Taste + R" und gebe "cmd" ein.
 Nun gebe folgenden Befehl ein, um die benötigten Packages zu installieren:
 ```
 pip install pygame sys random json
-
 ``` 
 ### Code kopieren
 
