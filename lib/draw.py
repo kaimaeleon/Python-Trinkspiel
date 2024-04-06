@@ -1,5 +1,4 @@
 import pygame
-import lib.gameClass as gameClass
 
 #Color Sheet
 DARK_GREY       = (64,64,64)

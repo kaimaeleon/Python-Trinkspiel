@@ -1,7 +1,7 @@
-import pygame, random, time
+import pygame, random
 import lib.gameClass as gameclass
 import lib.draw as draw
-import json as js
+import json
 
 DARK_GREY       = draw.DARK_GREY   
 LIGHT_GREY      = draw.LIGHT_GREY  
@@ -49,6 +49,9 @@ def gameLoop(control):
     
     #Wer ist dran
     if control.iState == 1:
+        if control.players[control.game.curP].tile >= 39:
+            control.iState = 10
+            return control
         if control.helpVar is None:
             control.helpVar = 750
         else:
@@ -59,6 +62,7 @@ def gameLoop(control):
             control.event.new = False
             control.helpVar = 0
             control.iState = 2
+            control.game.turnNo += 1
         
     #Würfeln
     if control.iState == 2:
@@ -88,8 +92,10 @@ def gameLoop(control):
     #Wurf spielen
     if control.iState == 4:
         control.players[control.game.curP].tile = control.players[control.game.curP].dice + control.players[control.game.curP].tileLast
+        if control.players[control.game.curP].tile >= 40:
+            control.players[control.game.curP].tile = 39
         if control.helpVar is None:
-            control.helpVar = 25
+            control.helpVar = 5
         elif control.helpVar <= 0:
             control.iState = 5
             control.helpVar = None
@@ -124,7 +130,7 @@ def gameLoop(control):
     #next turn
     if control.iState >= 10:
         if control.helpVar is None:
-            control.helpVar = 25
+            control.helpVar = 5
         elif control.helpVar <= 0:        
             control.game.curP += 1
             if control.game.curP >= control.game.actP:
@@ -196,7 +202,7 @@ def activePlayers(control):
 
 def boardCreation():
     file = open('tiles.json')
-    data = js.load(file)
+    data = json.load(file)
     tileCount = 0
     for key in data:
         tileCount += 1
@@ -218,7 +224,7 @@ def boardCreation():
                 count = board.count(data[randKey])
                 print(randKey,"besitzt max")
                 print("kommt bisher",count,"mal vor")
-                if data[randKey]["max"] <= count:
+                if data[randKey]["max"] <= count or "max" in board[i-1]:
                     randKey = data[randKey]["else"]
                     print("Erstezt durch ", randKey)
             board.append(data[randKey])
