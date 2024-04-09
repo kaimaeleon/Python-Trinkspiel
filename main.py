@@ -6,6 +6,7 @@ import lib.gameClass as gameClass
 pygame.init()
 screen_info = pygame.display.Info()
 eventInstance=gameClass.Event(False,0,0,None, None)
+print(screen_info.current_w,screen_info.current_h)
 control = gameClass.Control(width=screen_info.current_w, height=screen_info.current_h,event=eventInstance)
 control.screen = pygame.display.set_mode((control.width, control.height), pygame.FULLSCREEN)
 pygame.display.set_caption("Trinkspiel")

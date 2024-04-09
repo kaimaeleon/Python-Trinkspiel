@@ -169,7 +169,7 @@ def playboard(control):
     tileSize = h//6
     board = control.board
     tileCounter = 0
-    draw.rect(control.screen,DARK_GREY,w // 5 + 55, 55,8*tileSize+10,5*tileSize+10)
+    draw.rect(control.screen,LIGHT_PAPER,w // 5 + 55, 55,8*tileSize+10,5*tileSize+10)
     for j in range(5):
         if j % 2 == 0: 
             for i in range(8):
@@ -182,8 +182,8 @@ def playboard(control):
                 draw.rectText(control.screen, w // 5 + 60 + tileSize * (7-i), 60 + tileSize * j, tileSize, tileSize, board[tileCounter]["display"], colorRectOut=colorOut, colorRectIn=colorIn, colorText=colorTxt)
                 tileCounter += 1
     for i in range(2):
-        pygame.draw.line(control.screen,DARK_GREY,(w//5+60,60+tileSize+tileSize*2*i),(w//5+60+tileSize*7,60+tileSize+tileSize*2*i),5)
-        pygame.draw.line(control.screen,DARK_GREY,(w//5+60+tileSize,60+2*tileSize+tileSize*2*i),(w//5+60+tileSize*8,60+2*tileSize+tileSize*2*i),5)
+        pygame.draw.line(control.screen,LIGHT_PAPER,(w//5+60,60+tileSize+tileSize*2*i),(w//5+60+tileSize*7,60+tileSize+tileSize*2*i),5)
+        pygame.draw.line(control.screen,LIGHT_PAPER,(w//5+60+tileSize,60+2*tileSize+tileSize*2*i),(w//5+60+tileSize*8,60+2*tileSize+tileSize*2*i),5)
 
 def activePlayers(control):
     nonActPArray = []

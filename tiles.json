@@ -33,7 +33,7 @@
         "ID": 4,
         "sips": 0,
         "display":"Regel",
-        "str": "Stell neue eine Regel auf",
+        "str": "Stell eine neue Regel auf",
         "color": "cyan",
         "out": 0,
         "max": 2,
@@ -128,5 +128,25 @@
         "str": "Du kannst 2 verteilen",
         "color": "green",
         "out": 1
+    },
+    "HandsHeaven": {
+        "ID": 14,
+        "sips": 2,
+        "display":"Haende",
+        "str": "All hands to heaven!",
+        "color": "pink",
+        "out": 1,
+        "max": 1,
+        "else": "Verteil2"
+    },
+    "Shot": {
+        "ID": 15,
+        "sips": 5,
+        "display":"Shots",
+        "str": "Alle kriegen einen Shot!",
+        "color": "red",
+        "out": 1,
+        "max": 1,
+        "else": "Verteil5"
     }
   }
